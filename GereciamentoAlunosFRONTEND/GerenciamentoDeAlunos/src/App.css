@@ -182,3 +182,44 @@
     border-right-color: var(--border);
   }
 }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Centraliza na tela */
+#Form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical */
+  align-items: center;     /* horizontal */
+  height: 100vh;
+}
+
+/* Caixa do formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 20px;
+  gap: 10px;
+
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  color: black;
+}
+
+/* Inputs e select */
+input, select {
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Botão */
+button {
+  padding: 10px;
+  cursor: pointer;
+}
