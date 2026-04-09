@@ -13,26 +13,26 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String matricula;
-
     private String name;
 
     private Date birthDate;
 
     private Course course;
 
+    private String matricula;
+
     public Aluno(){
     }
 
     public Aluno(Integer id, String matricula, String name, Date birthDate, Course course) {
         this.id = id;
-        this.matricula = matricula;
         this.name = name;
         this.birthDate = birthDate;
         this.course = course;
+        this.matricula = matricula;
     }
 
-    public Aluno(int i, String estudarJava) {
+    public Aluno(String i) {
     }
 
     public Integer getId() {
@@ -43,20 +43,20 @@ public class Aluno {
         this.id = id;
     }
 
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public Date getBirthDate() {
@@ -67,11 +67,11 @@ public class Aluno {
         this.birthDate = birthDate;
     }
 
-    public Course getCourse() {
-        return course;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setCourse(Course course) {
-        this.course = course;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 }
