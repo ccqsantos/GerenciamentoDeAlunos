@@ -1,4 +1,4 @@
-package com.ccqsantos.todolist.entity;
+package com.ccqsantos.GerenciamentoAlunos.entity;
 
 
 public enum Course{

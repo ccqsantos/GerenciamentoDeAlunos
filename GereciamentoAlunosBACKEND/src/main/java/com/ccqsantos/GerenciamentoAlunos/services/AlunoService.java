@@ -1,8 +1,9 @@
-package com.ccqsantos.todolist.services;
+package com.ccqsantos.GerenciamentoAlunos.services;
 
-import com.ccqsantos.todolist.entity.Aluno;
-import com.ccqsantos.todolist.repository.AlunoRepository;
+import com.ccqsantos.GerenciamentoAlunos.entity.Aluno;
+import com.ccqsantos.GerenciamentoAlunos.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,13 @@ public class AlunoService {
     @Autowired
     private AlunoRepository repository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     public Aluno create(Aluno aluno){
+        String hashedPassword = passwordEncoder.encode(aluno.getPassword());
+        aluno.setHash(hashedPassword);
+
         return repository.save(aluno);
     }
 

@@ -1,4 +1,4 @@
-package com.ccqsantos.todolist.entity;
+package com.ccqsantos.GerenciamentoAlunos.entity;
 
 import jakarta.persistence.*;
 
@@ -21,18 +21,21 @@ public class Aluno {
 
     private String matricula;
 
+    private String hash;
+
+    @Transient
+    private String password;
+
     public Aluno(){
     }
 
-    public Aluno(Integer id, String matricula, String name, Date birthDate, Course course) {
+    public Aluno(Integer id, String name, Date birthDate, Course course, String matricula, String hash) {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
         this.course = course;
         this.matricula = matricula;
-    }
-
-    public Aluno(String i) {
+        this.hash = hash;
     }
 
     public Integer getId() {
@@ -51,14 +54,6 @@ public class Aluno {
         this.name = name;
     }
 
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
-
     public Date getBirthDate() {
         return birthDate;
     }
@@ -67,11 +62,35 @@ public class Aluno {
         this.birthDate = birthDate;
     }
 
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
     public String getMatricula() {
         return matricula;
     }
 
     public void setMatricula(String matricula) {
         this.matricula = matricula;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getHash(){
+        return hash;
+    }
+
+    public void setHash(String hash){
+        this.hash = hash;
     }
 }

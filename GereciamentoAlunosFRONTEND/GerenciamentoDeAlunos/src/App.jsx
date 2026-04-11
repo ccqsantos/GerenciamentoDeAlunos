@@ -1,27 +1,35 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css'
 import axios from 'axios';
+import { Eye, EyeOff } from 'lucide-react';
 
 const App = () => {
   const [successPage, setSuccessPage] = useState(false);
   const [errorPage, setErrorPage] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  
   const [form, setForm] = useState({
-  name: '',           
-  birthDate: '',      
-  course: '',         
-  matricula: ''       
+    name: '',           
+    birthDate: '',      
+    course: '',         
+    matricula: '',
+    password: ''       
   })
 
-  const handleInput = (event) =>{
-      setForm({...form, [event.target.name]: event.target.value});
+  const handleInput = (event) => {
+    setForm({...form, [event.target.name]: event.target.value});
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
     console.log("Curso enviado: ", form.course);
-    axios.post('http://localhost:8080/aluno', form)
+    axios.post('http://localhost:8080/aluno/register', form)
     .then(res => {
       setSuccessPage(true);
       console.log("Cadastro feito com sucesso!", res.data);
@@ -50,26 +58,24 @@ const App = () => {
        <div>
         <button onClick={() => setErrorPage(false)}>Tentar Novamente</button>
        </div>
-       
       </div>
     )
   }
 
   return (
-      <div id="Form">
-        <h1>Cadastro De Alunos</h1>
-        <div>
+    <div id="Form">
+      <h1>Cadastro De Alunos</h1>
+      <div>
         <form id="cadastro" onSubmit={handleSubmit}> 
           <label htmlFor="name">Nome: </label>
-        <input type="text" id="name" required onChange={handleInput} name='name'/>
+          <input type="text" id="name" required onChange={handleInput} name='name'/>
 
-        <label htmlFor="birthDate">Data de Nascimento: </label>
-        <input type="date" id="birthDate" required onChange={handleInput} name='birthDate'></input>
+          <label htmlFor="birthDate">Data de Nascimento: </label>
+          <input type="date" id="birthDate" required onChange={handleInput} name='birthDate'></input>
 
-        <label htmlFor="course">Selecione seu curso:</label>
-
-         <select id="course" required onChange={handleInput} name='course'>
-          <option value="DESENVOLVIMENTO_DE_SOFTWARE">Desenvolvimento de Software</option>
+          <label htmlFor="course">Selecione seu curso:</label>
+          <select id="course" required onChange={handleInput} name='course'>
+            <option value="DESENVOLVIMENTO_DE_SOFTWARE">Desenvolvimento de Software</option>
             <option value="LOGISTICA">Logistica</option>
             <option value="GESTAO_EMPRESARIAL">Gestão Empresarial</option>
             <option value="CIENCIAS_SOCIAIS"> Ciencias Sociais</option>
@@ -77,12 +83,42 @@ const App = () => {
           </select>
 
           <label htmlFor="matricula">Matricula</label>
-          <input type="text" id="matricula" required onChange={handleInput} name='matricula'></input>
+          <input type="text" id="matricula" required onChange={handleInput} name='matricula'/>
 
-            <input type='submit' id="btn-task" value="Cadastrar"/>
+          <label htmlFor="password">Senha</label>
+          <div style={{ position: 'relative', display: 'inline-block', width: '100%' }}>
+            <input 
+              type={showPassword ? "text" : "password"} 
+              id='password' 
+              required 
+              onChange={handleInput} 
+              name='password'
+            /> 
+            <button 
+              type="button"
+              onClick={togglePasswordVisibility}
+              style={{
+                position: 'absolute',
+                right: '8px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: 0,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
+
+          <input type='submit' id="btn-task" value="Cadastrar"/>
         </form>
-        </div>
       </div>
+    </div>
   )
 }
 

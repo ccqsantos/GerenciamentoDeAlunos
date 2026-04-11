@@ -1,7 +1,7 @@
-package com.ccqsantos.todolist.controllers;
+package com.ccqsantos.GerenciamentoAlunos.controllers;
 
-import com.ccqsantos.todolist.entity.Aluno;
-import com.ccqsantos.todolist.services.AlunoService;
+import com.ccqsantos.GerenciamentoAlunos.entity.Aluno;
+import com.ccqsantos.GerenciamentoAlunos.services.AlunoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ public class AlunoController {
     @Autowired //inversao de dependencia pelo spring
     private AlunoService service;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<Aluno> create(@RequestBody Aluno aluno){
         Aluno created = service.create(aluno);
         return ResponseEntity.ok(created);
