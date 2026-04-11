@@ -52,26 +52,25 @@ cd GerenciamentoDeAlunos
 cd src/main/resources
 touch application.properties
 
-: exemplo de application.properties:
-  /////
-  # Configurações básicas do banco H2
+### Exemplo de application.properties:
+
+    //Configurações básicas do banco H2
     spring.datasource.url=jdbc:h2:mem:alunosdb
     spring.datasource.driver-class-name=org.h2.Driver
     spring.datasource.username=sa
     spring.datasource.password=
   
-  # Habilitar console H2
+    //Habilitar console H2
     spring.h2.console.enabled=true
     spring.h2.console.path=/h2-console
   
-  # Configurações do JPA
+    //Configurações do JPA
     spring.jpa.hibernate.ddl-auto=update
     spring.jpa.show-sql=true
     spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
   
-  # Porta do servidor
+    //Porta do servidor
     server.port=8080
-  /////
 
 ### 2. Execute o Backend (Spring Boot)
 
